@@ -14,7 +14,9 @@ from logging import Logger
 from pathlib import Path
 import environ
 import django_heroku
+import dj_database_url
 import os
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -160,6 +162,12 @@ LOGGING = {
     },
 }
 
+
+# GDAL_LIBRARY_PATH='/opt/anaconda3/lib/libgdal.dylib'
+# GEOS_LIBRARY_PATH='/opt/anaconda3/lib/libgeos_c.dylib'
+ 
+django_heroku.settings(locals())
+
 try:
     if DEBUG == True:
         try:
@@ -177,11 +185,13 @@ try:
                 'HOST': 'localhost',
                 'PORT': '5432'
             }
-        }  
+
+            DATABASES = {
+                'default': dj_database_url.config(
+                    default=config('DATABASE_URL')
+                )
+            }
+        }
 except ImportError:
     Logger.info("Import env settings")
     
-# GDAL_LIBRARY_PATH='/opt/anaconda3/lib/libgdal.dylib'
-# GEOS_LIBRARY_PATH='/opt/anaconda3/lib/libgeos_c.dylib'
- 
-django_heroku.settings(locals())
