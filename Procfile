@@ -1,1 +1,1 @@
-web: gunicorn kartozaportfolio.wsgi --log-file -
+web: gunicorn kartozaportfolio.wsgi:application --log-file - --log-level debug
