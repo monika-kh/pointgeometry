@@ -184,7 +184,7 @@ try:
                     'USER': env('DATABASE_USER'),
                     'PASSWORD': env('DATABASE_PASS'),
                     'HOST': 'localhost',
-                    'PORT': '*'
+                    'PORT': '5433'
                 }
         }
 except ImportError:
