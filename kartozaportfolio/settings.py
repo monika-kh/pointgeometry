@@ -175,3 +175,5 @@ try:
         }  
 except ImportError:
     Logger.info("Import env settings")
+ 
+DISABLE_COLLECTSTATIC=1
