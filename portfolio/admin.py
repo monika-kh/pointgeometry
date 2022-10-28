@@ -95,7 +95,6 @@ def viewMap(request):
     users = User.objects.all()
     all_users = []
     for user in users:
-        import pdb;pdb.set_trace()
         if user is not None:
             user_details = [
                 user.username,
