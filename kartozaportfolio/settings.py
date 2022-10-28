@@ -171,7 +171,8 @@ django_heroku.settings(locals())
 try:
     if DEBUG == True:
         try:
-            from .local_settings import *
+#             from .local_settings import *
+              DATABASES = {default': dj_database_url.config()}
         except ImportError:
             Logger.info("Import local.settings file")
     else:
