@@ -6,7 +6,7 @@ DATABASES = {
         'USER': "anand",
         'PASSWORD': "anand",
         'HOST': 'localhost',
-        'PORT': '*'
+        'PORT': '5433'
     }
 }
 DEBUG = True
