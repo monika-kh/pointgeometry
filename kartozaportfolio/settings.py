@@ -172,7 +172,7 @@ try:
     if DEBUG == True:
         try:
 #             from .local_settings import *
-              DATABASES = {default': dj_database_url.config()}
+              DATABASES = {'default': dj_database_url.config()}
         except ImportError:
             Logger.info("Import local.settings file")
     else:
