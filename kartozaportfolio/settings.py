@@ -181,7 +181,7 @@ try:
 except ImportError:
     Logger.info("Import env settings")
     
-GDAL_LIBRARY_PATH='/opt/anaconda3/lib/libgdal.dylib'
-GEOS_LIBRARY_PATH='/opt/anaconda3/lib/libgeos_c.dylib'
+# GDAL_LIBRARY_PATH='/opt/anaconda3/lib/libgdal.dylib'
+# GEOS_LIBRARY_PATH='/opt/anaconda3/lib/libgeos_c.dylib'
  
 django_heroku.settings(locals())
