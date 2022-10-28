@@ -171,14 +171,9 @@ django_heroku.settings(locals())
 try:
     if DEBUG == True:
         try:
-#             from .local_settings import *
-#               DATABASES = {'default': dj_database_url.config()}
-               DATABASES = {
-                'default': {
-                    'ENGINE': 'django.contrib.gis.db.backends.postgis',
-                    'NAME': 'db',
-                    }
-                }
+            from .local_settings import *
+
+             
         except ImportError:
             Logger.info("Import local.settings file")
     else:
