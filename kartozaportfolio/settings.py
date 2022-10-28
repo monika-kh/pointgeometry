@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from logging import Logger
 from pathlib import Path
 import environ
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,7 +30,7 @@ environ.Env.read_env()
 SECRET_KEY = env('SECRET_KEY'),
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -57,6 +58,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     'kartozaportfolio.middleware.custom_middleware_file.ExampleMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware'
     
 ]
 
@@ -120,9 +122,11 @@ AUTH_USER_MODEL = "portfolio.User"
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATICFILE_DIRS = 'static/'
-STATIC_URL = "static/"
-STATIC_ROOT = BASE_DIR/"static"
+# STATICFILE_DIRS = 'static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -176,4 +180,4 @@ try:
 except ImportError:
     Logger.info("Import env settings")
  
-DISABLE_COLLECTSTATIC=1
+django_heroku.settings(locals())
