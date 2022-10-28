@@ -175,18 +175,18 @@ try:
         except ImportError:
             Logger.info("Import local.settings file")
     else:
+        DATABASES = {'default': dj_database_url.config()}
         
-        DATABASES = {
-#              'default': dj_database_url.config()
-            'default': {
-                    'ENGINE': 'django.contrib.gis.db.backends.postgis',
-                    'NAME': env('DATABASE_NAME'),
-                    'USER': env('DATABASE_USER'),
-                    'PASSWORD': env('DATABASE_PASS'),
-                    'HOST': 'localhost',
-                    'PORT': '5433'
-                }
-        }
+#         DATABASES = {
+#             'default': {
+#                     'ENGINE': 'django.contrib.gis.db.backends.postgis',
+#                     'NAME': env('DATABASE_NAME'),
+#                     'USER': env('DATABASE_USER'),
+#                     'PASSWORD': env('DATABASE_PASS'),
+#                     'HOST': 'localhost',
+#                     'PORT': '5433'
+#                 }
+#         }
 except ImportError:
     Logger.info("Import env settings")
     
